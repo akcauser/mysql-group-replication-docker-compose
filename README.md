@@ -1,19 +1,20 @@
 [Katacoda](https://www.katacoda.com/courses/docker-orchestration/playground)
 ```
 Swarm başlat
+$ docker swarm init
 
-docker node ls
+$ docker node ls
 
-git clone https://github.com/dincerkurnaz/mysql-group-replication-docker-compose.git
-cd mysql-group-replication-docker-compose
+$ git clone https://github.com/dincerkurnaz/mysql-group-replication-docker-compose.git
+$ cd mysql-group-replication-docker-compose
 
-docker stack deploy --compose-file docker-compose.yml myapp
+$ docker stack deploy --compose-file docker-compose.yml myapp
 
-docker stack ps myapp
+$ docker stack ps myapp
 
 OR
 
-docker ps -q -f name=myapp
+$ docker ps -q -f name=myapp
 263676ef6a12
 b529ccaf779c
 ea4a8ea23abf
@@ -50,15 +51,16 @@ select * from test;
 insert into test set name=(rand());
 
 delimiter //
-
-CREATE PROCEDURE proc1()
-BEGIN
-    DECLARE i int DEFAULT 1;
-    WHILE i <= 500 DO
-        insert into test set name=(rand());
-        SET i = i + 1;
-    END WHILE;
-END//
+--- sql 
+  CREATE PROCEDURE proc1()
+  BEGIN
+      DECLARE i int DEFAULT 1;
+      WHILE i <= 500 DO
+          insert into test set name=(rand());
+          SET i = i + 1;
+      END WHILE;
+  END//
+---
 
 delimiter ;
 
